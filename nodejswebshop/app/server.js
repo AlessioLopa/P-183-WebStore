@@ -1,22 +1,15 @@
-const express = require("express");
-const https = require("node:https");
-const fs = require("node:fs");
-const mysql = require("mysql2");
+import express from "express";
+import https from "node:https";
+import fs from "node:fs";
+import connection from "./mysql/MySql.js";
 
-const options = {
-  key: fs.readFileSync("./certificates/key.key"),
-  cert: fs.readFileSync("./certificates/cert.cert"),
-};
+// Instancie express
+const app = express();
 
-// create a new MySQL connection
-const connection = mysql.createConnection({
-  host: "172.0.0.2",
-  port: "3306",
-  user: "db_user",
-  password: "db_user_pass",
-  database: "db_WebStore",
-});
-// connect to the MySQL database
+// Permet d'afficher du json
+app.use(express.json());
+
+// Connection avec la base de données
 connection.connect((error) => {
   if (error) {
     console.error("Error connecting to MySQL database:", error);
@@ -24,17 +17,21 @@ connection.connect((error) => {
     console.log("Connected to MySQL database!");
   }
 });
-// close the MySQL connection
-connection.end();
 
-// Démarrage du serveur
-https
-  .createServer(options, (req, res) => {
-    res.writeHead(200);
-    res.end("hello world\n");
-  })
-  .listen(8080);
+// Options qui appelent le certificat ssl
+const options = {
+  key: fs.readFileSync("./certificates/key.key"),
+  cert: fs.readFileSync("./certificates/cert.cert"),
+};
 
-const app = express();
-const userRoute = require("./routes/User");
-app.use("/user", userRoute);
+// Démarrage du serveur avec le certificat ssl
+https.createServer(options, app).listen(8080);
+
+// Route de login et de user
+import userRouter from "./routes/User.js";
+app.use("/user", userRouter);
+
+// Home
+app.use("/", (req, res) => {
+  res.end("Hello World");
+});

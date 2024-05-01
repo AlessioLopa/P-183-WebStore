@@ -1,16 +1,13 @@
-import mysql from "mysql2";
+/* const mysql = require("mysql2");
+ */ import mysql from "mysql2";
 
-const config = {
+// Crée une nouvelle connexion à la base de données
+const connection = mysql.createConnection({
   host: "localhost",
-  port: 3306,
-  database: "db_WebStore",
+  port: "6033",
   user: "root",
   password: "root",
-};
-
-const connection = mysql.createConnection(config);
-
-connection.connect(function (err) {
-  if (err) throw err;
-  console.log("Connected !");
+  database: "db_WebStore",
 });
+
+export default connection;

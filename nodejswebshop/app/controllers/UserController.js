@@ -1,5 +1,7 @@
-module.exports = {
-    get: (req, res) => {
-        res.send("User: Sarah");
-    }
+const controller = {
+  get: (req, res) => {
+    const user = new Users();
+  },
 };
+
+export default controller;
