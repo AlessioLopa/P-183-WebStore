@@ -1,9 +1,10 @@
-import * as controller from "../controllers/UserController.js";
 import express from "express";
 import connection from "../mysql/MySql.js";
+import auth from "../auth/auth.js";
 
 const userRouter = express.Router();
-userRouter.get("/", (req, res) => {
+
+userRouter.get("/", auth, (req, res) => {
   connection.query("SELECT * FROM t_user", (error, result) => {
     if (error) {
       const message =
@@ -14,8 +15,7 @@ userRouter.get("/", (req, res) => {
       const message = "Impossible de trouver les users";
       res.status(404).json({ message });
     } else {
-      res.json(result);
-      console.log(result);
+      res.json({ result });
     }
   });
 });
