@@ -35,6 +35,6 @@ import loginRouter from "./routes/login.js";
 app.use("/login", loginRouter);
 
 // Home
-app.use("/", (req, res) => {
+/* app.use("/", (req, res) => {
   res.end("Hello World");
-});
+}); */
