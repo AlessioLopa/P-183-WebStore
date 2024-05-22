@@ -35,6 +35,8 @@ const auth = (req, res, next) => {
           // Envoi d'une réponse 401 si l'userId ne correspond pas
           return res.status(401).json({ message });
         } else {
+          // Passage des information du decoded token à req.user
+          req.user = decodedToken;
           // Passage au middleware suivant si le jeton est valide et les userId correspondent
           next();
         }

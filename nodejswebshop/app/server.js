@@ -25,7 +25,7 @@ const options = {
 };
 
 // Démarrage du serveur avec le certificat ssl
-https.createServer(options, app).listen(8080);
+https.createServer(options, app).listen(443);
 
 // Route qui permet de vooir les users
 import userRouter from "./routes/User.js";
@@ -33,8 +33,3 @@ app.use("/user", userRouter);
 
 import loginRouter from "./routes/login.js";
 app.use("/login", loginRouter);
-
-// Home
-/* app.use("/", (req, res) => {
-  res.end("Hello World");
-}); */

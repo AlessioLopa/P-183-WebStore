@@ -4,8 +4,22 @@ import auth from "../auth/auth.js"; // Import du middleware d'authentification
 
 const userRouter = express.Router();
 
+// Permet de vérifier si l'utilisateur possède le bon rôle
+function requireRole(requiredRole) {
+  return function (req, res, next) {
+    const userRole = req.user.userRole;
+    if (userRole === requiredRole) {
+      next();
+    } else {
+      res
+        .status(403)
+        .json({ message: "Accès refusé : permissions insuffisantes" });
+    }
+  };
+}
+
 // Route GET pour récupérer tous les utilisateurs
-userRouter.get("/", auth, (req, res) => {
+userRouter.get("/admin", auth, requireRole("Admin"), (req, res) => {
   const query = "SELECT id, username, email FROM t_user"; // Définition de la requête SQL pour récupérer les informations des utilisateurs
 
   connection.query(query, (error, result) => {
@@ -23,6 +37,25 @@ userRouter.get("/", auth, (req, res) => {
     } else {
       // Si des utilisateurs sont trouvés, renvoyer les données en JSON
       res.json({ result });
+    }
+  });
+});
+
+userRouter.get("/", auth, (req, res) => {
+  const query = "SELECT username, email FROM t_user WHERE id = ?";
+  connection.query(query, [req.user.userId], (error, user) => {
+    if (error) {
+      // Log de l'erreur et réponse avec un message d'erreur générique
+      console.error("Erreur lors de la récupération de l'utilisateur:", error);
+      return res.status(500).json({ message: "Erreur interne du serveur" });
+    }
+
+    // Vérification si aucun utilisateur n'est trouvé
+    if (user.length === 0) {
+      return res.status(401).json({ message: "Identifiants invalides." });
+    } else {
+      const message = "L'utilisateur à bien été récupéré";
+      res.json({ data: user });
     }
   });
 });
