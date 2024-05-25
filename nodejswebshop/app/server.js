@@ -11,13 +11,14 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:5173", // Assurez-vous que cette URL correspond à l'origine de votre frontend
-    methods: ["GET", "POST", "PUT", "DELETE"], // Les méthodes HTTP que vous autorisez
-    allowedHeaders: ["Content-Type", "Authorization"], // Les en-têtes que vous autorisez
+    origin: "http://localhost:5173", // URL correspondant au FrontEnd
+    methods: ["GET", "POST", "PUT", "DELETE"], // Les méthodes HTTP qui sont autorisé
+    allowedHeaders: ["Content-Type", "Authorization"], // Les en-têtes qui sont autorisé
     credentials: true, // Ceci est nécessaire pour les cookies, les sessions HTTP ou les en-têtes d'authentification
-    optionsSuccessStatus: 200, // Pour les navigateurs plus anciens qui ne gèrent pas bien le 204
+    optionsSuccessStatus: 200, // Renvoie le status 200 pour les requetes terminées avec succès
   })
 );
+
 // Connection avec la base de données
 connection.connect((error) => {
   if (error) {
@@ -36,9 +37,10 @@ const options = {
 // Démarrage du serveur avec le certificat ssl
 https.createServer(options, app).listen(443);
 
-// Route qui permet de vooir les users
+// Route qui permet de voir les users
 import userRouter from "./routes/User.js";
 app.use("/user", userRouter);
 
+// Route qui permet de se login
 import loginRouter from "./routes/login.js";
 app.use("/login", loginRouter);

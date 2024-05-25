@@ -35,6 +35,7 @@ loginRouter.post("/", (req, res) => {
 
     const user = users[0];
     const hashedPassword = user.password;
+
     // Comparaison du mot de passe envoyé avec le mot de passe hashé stocké
     const isPasswordCorrect = compareHashPassword(password, hashedPassword);
     if (isPasswordCorrect) {
