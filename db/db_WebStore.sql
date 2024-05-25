@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db:3306
--- Généré le : sam. 25 mai 2024 à 09:36
+-- Généré le : sam. 25 mai 2024 à 09:40
 -- Version du serveur : 8.0.30
 -- Version de PHP : 8.0.27
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `db_WebStore`
 --
+CREATE DATABASE IF NOT EXISTS `db_WebStore` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `db_WebStore`;
 
 -- --------------------------------------------------------
 
