@@ -1,12 +1,12 @@
 <script setup>
 import { ref } from 'vue'
-import api from '@/Services/axios'
+import axios from '@/Services/axios'
 
 const user = ref({})
 
 async function OnSubmit() {
   try {
-    await api.login(user.value)
+    await axios.login(user.value)
   } catch (error) {
     console.log(error)
   }

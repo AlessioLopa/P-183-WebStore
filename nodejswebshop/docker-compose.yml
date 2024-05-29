@@ -39,6 +39,8 @@ services:
     working_dir: /home/node/app
     environment:
       - NODE_ENV=development
+    depends_on:
+      - db
     volumes:
       - ./app:/home/node/app
       - /home/node/app/node_modules
