@@ -3,6 +3,10 @@
 # Description : This compose file creates a stack of two containers (nodejs + mysql)
 #version: "2"
 
+# Updated date : 27.05.2024
+# Updated by : ALO
+# Description : This docker compose creates a stack of 3 contaainers (nodejs + vuejs + mysql)
+
 services:
   db:
     image: mysql:8.0.30
