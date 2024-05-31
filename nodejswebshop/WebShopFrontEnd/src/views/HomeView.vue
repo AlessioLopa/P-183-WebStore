@@ -20,7 +20,7 @@ async function OnSubmit() {
   <div>
     <form @submit.prevent="OnSubmit">
       <input type="text" placeholder="Username" v-model="user.username" />
-      <input type="text" placeholder="Password" v-model="user.password" />
+      <input type="password" placeholder="Password" v-model="user.password" />
       <p v-show="Successful">Connected Successful</p>
       <button>Submit</button>
     </form>

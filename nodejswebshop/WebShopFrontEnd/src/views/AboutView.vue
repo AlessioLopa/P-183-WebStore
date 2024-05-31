@@ -1,15 +1,28 @@
+<script setup>
+import { ref } from 'vue'
+import axios from '@/Services/axios'
+
+const users = ref()
+const user = ref({})
+try {
+  axios.getUser().then((response) => {
+    users.value = response.data.data
+    user.value = users.value[0]
+  })
+} catch (error) {
+  console.log(error)
+}
+</script>
+
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h1>{{ user.username }}</h1>
+    <p>{{ user.email }}</p>
   </div>
 </template>
 
 <style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
+.about {
+  color: white;
 }
 </style>
