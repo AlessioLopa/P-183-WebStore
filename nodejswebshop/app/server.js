@@ -28,7 +28,7 @@ connection.connect((error) => {
   }
 });
 
-// Options qui appelent le certificat ssl
+// //Options qui appelent le certificat ssl
 // const options = {
 //   key: fs.readFileSync("./certificates/key.key"),
 //   cert: fs.readFileSync("./certificates/cert.cert"),
@@ -37,7 +37,7 @@ connection.connect((error) => {
 // // Démarrage du serveur avec le certificat ssl (HTTPS)
 // https.createServer(options, app).listen(443);
 
-// Démarrage dud serveur en HTTP
+// Démarrage du serveur en HTTP
 app.listen(443);
 
 // Route qui permet de voir les users
