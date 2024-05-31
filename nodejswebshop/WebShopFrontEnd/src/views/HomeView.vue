@@ -3,12 +3,13 @@ import { ref } from 'vue'
 import axios from '@/Services/axios'
 
 const user = ref({})
-let Successful = false
+let Successful = ref(false)
 async function OnSubmit() {
   try {
     await axios.login(user.value)
-    Successful = true
-    console.log(Successful)
+    Successful.value = true
+    user.value.username = ''
+    user.value.password = ''
   } catch (error) {
     console.log(error)
   }
@@ -20,8 +21,8 @@ async function OnSubmit() {
     <form @submit.prevent="OnSubmit">
       <input type="text" placeholder="Username" v-model="user.username" />
       <input type="text" placeholder="Password" v-model="user.password" />
-      <button>Submit</button>
       <p v-show="Successful">Connected Successful</p>
+      <button>Submit</button>
     </form>
   </div>
 </template>
@@ -30,5 +31,9 @@ async function OnSubmit() {
 form {
   display: flex;
   flex-direction: column;
+}
+
+p {
+  color: green;
 }
 </style>
