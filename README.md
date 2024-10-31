@@ -1,6 +1,6 @@
 # P-183-WebStore
-![image]({https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white})
-![image]({https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white})
+![Name]({https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white})
+![Name]({https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white})
 ![image]({https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white})
 ![image]({https://img.shields.io/badge/Vue%20js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D})
 ![image]({https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white})
